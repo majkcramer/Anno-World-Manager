@@ -1,0 +1,7 @@
+The original templates are stored in the FileDBReader (https://github.com/anno-mods/FileDBReader/tree/master/FileFormats) repository. From the work on and with the Anno World Manager could arise either
+(a) an individual adaptation need arises
+(b) a new knowledge situation compared to the original templates.
+
+In the case (b) the knowledge situation should be returned absolutely to the Mentainer of the originals.
+
+The subdirectory therefore serves to keep our state of affairs regarding the original templates.

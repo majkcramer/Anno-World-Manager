@@ -1,0 +1,31 @@
+﻿[WELT]
+
+- Jede Region bekommt mehrere vordeffinierte Slots (Hafen)
+
+
+
+[Region - START TEMPLATE]
+
+- Überschreibt das Template welches Regionen zum Spielstart generiert
+
+
+[REGION - TEMPLATE]
+
+- Kopiert die vom Spiel bereits generierte Region für den User
+
+[REGION - CUSTOM]
+
+- Erstellt eine komplett neue Region (Inseln usw.)
+
+
+
+
+
+
+
+Funktionalität:
+- Der Manager verwaltet Region "Repositorys"
+- Der Manager verwaltet die Welt und zugeordnete Repositorys
+
+Offen:
+- Keine Unterstützung von Pools, oder ?!?

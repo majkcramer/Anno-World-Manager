@@ -1,0 +1,111 @@
+﻿[
+
+	{
+		"Name": "Cap Trelowney",
+		"Desciption": "",
+		"IsVanilla": true,
+		"Region": "CapTrelawney",
+		"MapPath": "data/dlc01/sessions/maps/sunken_treasures/moderate_continental_01/moderate_c_01.a7tinfo"
+	},
+
+
+	{
+		"Name": "Campaign - Chapter 03 - Whatever",
+		"Desciption": "",
+		"IsVanilla": true,
+		"Region": "OldWorld",
+		"MapPath": "data/sessions/maps/campaign/colony01/campaign_chapter03_colony01/campaign_chapter03_colony01.a7tinfo"
+	},
+
+	{
+		"Name": "Campaign - Prologue - Whatever2",
+		"Desciption": "",
+		"IsVanilla": true,
+		"Region": "OldWorld",
+		"MapPath": "data/sessions/maps/campaign/colony01/campaign_prologue_colony01/campaign_prologue_colony01.a7tinfo"
+	},
+
+	{
+		"Name": "Campaign - Chapter 01 - Whatever3",
+		"Desciption": "",
+		"IsVanilla": true,
+		"Region": "OldWorld",
+		"MapPath": "data/sessions/maps/campaign/moderate/campaign_chapter01_moderate_01/campaign_chapter01_moderate_01.a7tinfo"
+	},
+
+	{
+		"Name": "New World - Large variant 01",
+		"Desciption": "",
+		"IsVanilla": true,
+		"Region": "NewWorld",
+		"MapPath": "data/sessions/maps/pool/colony01/colony01_l_01/colony01_l_01.a7tinfo"
+	},
+
+	{
+		"Name": "New World - Large variant 02",
+		"Desciption": "",
+		"IsVanilla": true,
+		"Region": "NewWorld",
+		"MapPath": "data/sessions/maps/pool/colony01/colony01_l_02/colony01_l_02.a7tinfo"
+	},
+
+	{
+		"Name": "New World - Large variant 03",
+		"Desciption": "",
+		"IsVanilla": true,
+		"Region": "NewWorld",
+		"MapPath": "data/sessions/maps/pool/colony01/colony01_l_03/colony01_l_03.a7tinfo"
+	},
+
+	{
+		"Name": "Old World - Atoll Large variant 01",
+		"Desciption": "",
+		"IsVanilla": true,
+		"Region": "OldWorld",
+		"MapPath": "data/sessions/maps/pool/moderate/moderate_atoll_ll_01/moderate_atoll_ll_01.a7tinfo"
+	},
+
+	{
+		"Name": "Land of Lions",
+		"Desciption": "",
+		"IsVanilla": true,
+		"Region": "Enbesa",
+		"MapPath": "data/dlc06/sessions/maps/land_of_lions/colony02_01/colony02_01.a7tinfo"
+	},
+
+
+	{
+		"Name": "Not Artctic",
+		"Desciption": "",
+		"IsVanilla": true,
+		"Region": "Arctic",
+		"MapPath": "data/dlc10/scenario02/sessions/maps/scenario_02_colony_01/scenario_02_colony_01.a7tinfo"
+	},
+
+
+	{
+		"Name": "Arctic",
+		"Desciption": "",
+		"IsVanilla": true,
+		"Region": "Arctic",
+		"MapPath": "data/dlc03/sessions/maps/colony_03_sp/colony_03_sp.a7tinfo"
+	},
+
+
+	{
+		"Name": "Scenario 03 - GU 15",
+		"Desciption": "",
+		"IsVanilla": true,
+		"Region": "NewWorld",
+		"MapPath": "data/dlc11/scenario03/sessions/maps/scenario_03_colony_01/scenario_03_colony_01.a7tinfo"
+
+	},
+
+
+
+	
+
+
+
+
+]

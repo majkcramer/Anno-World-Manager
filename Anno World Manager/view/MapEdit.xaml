@@ -1,0 +1,308 @@
+﻿<UserControl x:Class="Anno_World_Manager.view.MapEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Anno_World_Manager.view" 
+             xmlns:subview="clr-namespace:Anno_World_Manager.view.subview" 
+             xmlns:dd="clr-namespace:Anno_World_Manager.viewmodel.baseclasses"
+             xmlns:zoomAndPan="clr-namespace:ZoomAndPan;assembly=ZoomAndPan"
+             xmlns:converters="clr-namespace:Anno_World_Manager.viewmodel.converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="650"
+             d:DesignWidth="1000" 
+             SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:BoolInvertConverter x:Key="BoolInvertConverter" />
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <converters:BoolInvertedToVisibilityConverter x:Key="BoolInvertedToVisibilityConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="171*"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="270"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- List of Islands -->
+        <Grid Grid.Column="0" Grid.Row="1" Height="auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Expander Grid.Row="0" Height="auto" Header="Settings" Width="auto" Margin="0,0,0,10" IsExpanded="True">
+                <TabControl>
+                    <TabItem Header="Islands" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <Label Content="Where the island comes from: "/>
+                            <CheckBox IsChecked="{Binding ShowIslandsFromRegionOldWorld}">Region 'Old World'</CheckBox>
+                            <CheckBox IsChecked="{Binding ShowIslandsFromRegionCapTrelawney}">Region 'Cap Trelawney'</CheckBox>
+                            <CheckBox IsChecked="{Binding ShowIslandsFromRegionArctic}">Region 'Arctic'</CheckBox>
+                            <CheckBox IsChecked="{Binding ShowIslandsFromRegionNewWorld}">Region 'New World'</CheckBox>
+                            <CheckBox IsChecked="{Binding ShowIslandsFromRegionEnbesa}">Region 'Enbesa'</CheckBox>
+                            <CheckBox IsChecked="{Binding ShowIslandsFromScenarios}">Scenarios</CheckBox>
+                            <CheckBox IsChecked="{Binding ShowIslandsFromCommunity}">Community</CheckBox>
+
+                            <Label Content="What characteristic must have the island:" />
+                            <CheckBox 
+                                IsChecked="{Binding ShowIslandsAll}">Anyway, I want to have all of them.</CheckBox>
+
+                            <CheckBox 
+                                IsEnabled="{Binding ShowIslandsAll, Converter={StaticResource BoolInvertConverter}}"
+                                IsChecked="{Binding ShowIslandIsSettleable}">Settleable islands</CheckBox>
+                            <CheckBox
+                                IsEnabled="{Binding ShowIslandsAll, Converter={StaticResource BoolInvertConverter}}"
+                                IsChecked="{Binding ShowIslandIsDecorative}"
+                                >Decorative islands</CheckBox>
+                            <CheckBox
+                                IsEnabled="{Binding ShowIslandsAll, Converter={StaticResource BoolInvertConverter}}"
+                                IsChecked="{Binding ShowIslandIsThirdParty}"
+                                >Third party islands</CheckBox>
+                            <CheckBox 
+                                IsEnabled="{Binding ShowIslandsAll, Converter={StaticResource BoolInvertConverter}}"
+                                IsChecked="{Binding ShowIslandsIsSmall}">'small' islands</CheckBox>
+                            <CheckBox 
+                                IsEnabled="{Binding ShowIslandsAll, Converter={StaticResource BoolInvertConverter}}"
+                                IsChecked="{Binding ShowIslandsIsMedium}">'medium' islands</CheckBox>
+                            <CheckBox 
+                                IsEnabled="{Binding ShowIslandsAll, Converter={StaticResource BoolInvertConverter}}"
+                                IsChecked="{Binding ShowIslandsIsLarge}">'large' islands</CheckBox>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="TabItem">
+                        <Grid Background="#FFE5E5E5"/>
+                    </TabItem>
+                </TabControl>
+            </Expander>
+
+            <Expander Grid.Row="1" Height="auto" Header="Islands" Width="auto" Margin="0,0,0,10" IsExpanded="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ListView ItemsSource="{Binding Islands}" ScrollViewer.VerticalScrollBarVisibility="Auto" QueryContinueDrag="ListView_QueryContinueDrag">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image 
+                                    Grid.Column="0"
+                                    Name="image"
+                                    Source="{Binding Png}"/>
+                                    <StackPanel
+                                    Grid.Column="1"
+                                    >
+                                        <TextBlock Text="{Binding Label}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+            </Expander>
+        </Grid>
+
+        <GridSplitter Grid.Column="1" Grid.RowSpan="2"  HorizontalAlignment="Stretch"/>
+
+        <!-- Map Canvas with Pan Zoom-->
+        <ScrollViewer Name="MapScrollViewer"
+                      Grid.Row="1" 
+                      Grid.Column="2"  
+                      CanContentScroll="True"
+                      VerticalScrollBarVisibility="Visible" 
+                      HorizontalScrollBarVisibility="Visible">
+
+
+
+            <zoomAndPan:ZoomAndPanControl Name="MapZoomAndPanControl"
+                                          Background="#AACCCCCC"
+                                          MinimumZoomType="FitScreen"
+                                          UseAnimations="True"
+                                          ZoomAndPanInitialPosition="FillScreen"
+                                          >
+                <Grid x:Name="MapGridWrapper" 
+                      Background="White"
+                      Width="{Binding MapCanvasWidth}"
+                      Height="{Binding MapCanvasHeight}"
+                      AllowDrop="True"
+                      Drop="MapGridWrapper_Drop" 
+                      DragEnter="MapGridWrapper_DragEnter" DragOver="MapGridWrapper_DragOver" DragLeave="MapGridWrapper_DragLeave"
+                      >
+
+                    <!-- Only (!) for Drag and Drop Operations -->
+                    <Grid Panel.ZIndex="9999">
+                        <Canvas x:Name="DragAndDropOnlyLayer" 
+                                Width="{Binding Session.SizeMapWidth}"
+                                Height="{Binding Session.SizeMapHeight}"
+                                Visibility="{Binding DragDropIsInProgress, Converter={StaticResource BoolToVisibilityConverter}}" 
+                                IsEnabled="{Binding DragDropIsInProgress}"
+                                Background="#332BCA09"
+                                RenderTransformOrigin="0.5, 0.5" 
+                        >
+                            <Canvas.RenderTransform>
+                                <RotateTransform Angle="{Binding RotationAngle}" d:Angle="45"/>
+                            </Canvas.RenderTransform>
+                        </Canvas>
+                    </Grid>
+
+                    <!-- Player Area -->
+                    <Grid >
+                        <Canvas 
+                            Width="{Binding PlayableAreaCanvasWidth}"
+                            Height="{Binding PlayableAreaCanvasHeight}"
+                            d:Width="15"
+                            d:Height="15"
+                            Background="Black"
+                            Panel.ZIndex="5"
+                            RenderTransformOrigin="0.5, 0.5" 
+                            >
+                            <Canvas.RenderTransform>
+                                <TransformGroup>
+                                    <TranslateTransform X="{Binding PlayableAreaCanvasTranslateX}" Y="{Binding PlayableAreaCanvasTranslateY}"/>
+                                    <RotateTransform Angle="{Binding RotationAngle}" d:Angle="45"/>
+                                </TransformGroup>
+                            </Canvas.RenderTransform>
+                        </Canvas>
+                    </Grid>
+
+                    <!--
+                        This Canvas is the main part of the content that is displayed.
+                    -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <ItemsControl x:Name="MapCanvasContent2"
+                                  Width="{Binding Session.SizeMapWidth}"
+                                  Height="{Binding Session.SizeMapHeight}"
+                                  ItemsSource="{Binding Session.IslandOnMaps}"
+                                      
+                                  d:Width="20"
+                                  d:Height="20"
+                                  RenderTransformOrigin="0.5, 0.5" 
+                                  Background="#CC001455" 
+                                  Panel.ZIndex="10"
+                                  AllowDrop="True" Grid.RowSpan="2"
+                                      >
+                            <ItemsControl.RenderTransform>
+                                <RotateTransform Angle="{Binding RotationAngle}" d:Angle="45"/>
+                            </ItemsControl.RenderTransform>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas 
+                                        Name="MapCanvas" 
+                                        Background="Transparent" 
+                                        Selector.SelectionChanged="MapCanvas_SelectionChanged" 
+                                        MouseDown="MapCanvas_MouseDown" 
+                                        PreviewMouseLeftButtonDown="MapCanvas_PreviewMouseLeftButtonDown" 
+                                        PreviewMouseDown="MapCanvas_PreviewMouseDown" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ContentPresenter">
+                                    <Setter Property="Canvas.Top" Value="{Binding ViewModelPositionY}" />
+                                    <Setter Property="Canvas.Left" Value="{Binding PositionX}" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:MapElementIsland Width="50" Height="50"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+
+
+
+                    
+                </Grid>
+            </zoomAndPan:ZoomAndPanControl>
+        </ScrollViewer>
+
+        <GridSplitter Grid.Column="3" Grid.RowSpan="2"  HorizontalAlignment="Stretch"/>
+
+        <!-- Map Size and Playable Area -->
+
+        <TabControl Grid.Row="0" Grid.Column="4">
+            <TabItem Header="Map">
+                <StackPanel Grid.Column="4" Grid.Row="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        
+                        <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding RotationAngle}"/>
+                        <Label Grid.Column="1" Grid.Row="7" Content="{Binding ElementName=MapZoomAndPanControl, Path=ViewportZoom, Mode=TwoWay}" />
+                        <CheckBox Name="IsIslandSnappingAktivated"  Grid.Column="1" Grid.Row="8" IsChecked="{Binding IsIslandSnappingAktivated}" Content="Island Snapping at Map Border" />
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Map Size">
+                <subview:SessionSizeMap />
+            </TabItem>
+            <TabItem Header="Playable Area">
+                <subview:SessionSizePlayableArea />
+            </TabItem>
+        </TabControl>
+
+
+        
+
+        <!-- Island Properties -->
+        <Grid Grid.Column="4" Grid.Row="1">
+            <TabControl>
+                <TabItem Header="Map">
+                    <StackPanel>
+                        <Button Content="TODO: Switch Island Image Style" />
+                        <Button Content="TODO: Clear All Islands" />
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Island Options">
+                    <StackPanel>
+                        <Border Visibility="{Binding Path=Session.HasSelectedIsland, Converter={StaticResource BoolInvertedToVisibilityConverter}}" Margin="5" Padding="10" Background="#FFD4AB04" BorderBrush="#FF312702" BorderThickness="1,0,1,0">
+                            <TextBlock TextWrapping="Wrap" FontSize="14" HorizontalAlignment="Center">Select an island with left mouse click to get properties / possibilities displayed here.</TextBlock>
+                        </Border>
+                        <Button Content="TODO: Remove" />
+                        <Button Content="TODO: Rotate" />
+                        <Button Content="TODO: Replace with fixed Island" />
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Island Properties">
+                    <StackPanel>
+                        <Border Visibility="{Binding Path=Session.HasSelectedIsland, Converter={StaticResource BoolInvertedToVisibilityConverter}}" Margin="5" Padding="10" Background="#FFD4AB04" BorderBrush="#FF312702" BorderThickness="1,0,1,0">
+                            <TextBlock TextWrapping="Wrap" FontSize="14" HorizontalAlignment="Center">Select an island with left mouse click to get properties / possibilities displayed here.</TextBlock>
+                        </Border>
+                        <Button Content="TODO: Fertilities" />
+                    </StackPanel>
+                </TabItem>
+
+            </TabControl>
+        </Grid>
+
+    </Grid>
+</UserControl>

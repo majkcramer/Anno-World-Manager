@@ -1,0 +1,157 @@
+﻿<UserControl x:Class="Anno_World_Manager.view.Maps_Overview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Anno_World_Manager.view"
+             xmlns:converters="clr-namespace:Anno_World_Manager.viewmodel.converters"
+             xmlns:m="clr-namespace:Anno_World_Manager.model"
+             mc:Ignorable="d" 
+             d:DesignHeight="850" 
+             d:DesignWidth="800" 
+             d:Background="White">
+    <UserControl.Resources>
+        <converters:EnumToBoolConverter x:Key="EnumToBoolConverter" />
+        <converters:BoolInvertConverter x:Key="BoolInvertConverter" />
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" MaxHeight="100"/>
+            <RowDefinition Height="8*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Überschrift" Background="Beige" />
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Liste der Maps" Background="AliceBlue" />
+
+        <!--
+        <Label Grid.Row="1" Grid.Column="1" Content="Eigenschaften der Map und Optionen" Background="Aqua" />
+        -->
+
+        <!-- NEW MAP -->
+        <Grid Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8"/>
+
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" BorderThickness="0,0,0,1" BorderBrush="#FF683B04">
+                <Label Content="Create a new map" FontSize="14" />
+            </Border>
+
+            <Label Grid.Row="2" Grid.Column="0" Content="Map Type :" />
+            <StackPanel Grid.Row="2" Grid.Column="1">
+                <RadioButton GroupName="grp_maptype" Name="new_map_type_gamestart" 
+                             IsChecked="{Binding MapType, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:MapType.Template}}"
+                             >Gamestart Map - Can be used at the start of a new game</RadioButton>
+                <RadioButton GroupName="grp_maptype" Name="new_map_type_region" 
+                             IsChecked="{Binding MapType, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:MapType.Session}}"
+                             >Region Map - An additional region appears on a continent</RadioButton>
+            </StackPanel>
+
+            <Label Grid.Row="4" Grid.Column="0" Content="Map Region :" />
+            <StackPanel Grid.Row="4" Grid.Column="1">
+                <RadioButton GroupName="grp_mapregion" Name="new_map_region_oldworld" 
+                             IsChecked="{Binding MapRegion, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:WorldRegion.OldWorld}}"
+                             >Old World</RadioButton>
+                <RadioButton GroupName="grp_mapregion" Name="new_map_region_captrelawney" 
+                             IsChecked="{Binding MapRegion, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:WorldRegion.CapTrelawney}}"
+                             >Cap Trelawney</RadioButton>
+                <RadioButton GroupName="grp_mapregion" Name="new_map_region_newworld" 
+                             IsChecked="{Binding MapRegion, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:WorldRegion.NewWorld}}"
+                             >New World</RadioButton>
+                <RadioButton GroupName="grp_mapregion" Name="new_map_region_arctic" 
+                             IsChecked="{Binding MapRegion, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:WorldRegion.Arctic}}"
+                             >Arctic</RadioButton>
+                <RadioButton GroupName="grp_mapregion" Name="new_map_region_enbesa" 
+                             IsChecked="{Binding MapRegion, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:WorldRegion.Enbesa}}"
+                             >Enbesa</RadioButton>
+            </StackPanel>
+
+            <Label Grid.Row="6" Grid.Column="0" Content="Use Template :" />
+            <StackPanel Grid.Row="6" Grid.Column="1">
+                <RadioButton GroupName="grp_maptemplate" Name="new_map_template_use" IsChecked="{Binding HasMapTemplate}" >
+                    <RadioButton.Content>
+                        <StackPanel>
+                            <TextBlock Text="Yes, start with the following Anno internal map template:" />
+                            <ComboBox ItemsSource="{Binding ListOfMapTemplates}" SelectedItem="{Binding SelectedMapTemplate, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton GroupName="grp_maptemplate" Name="new_map_template_custom" IsChecked="{Binding HasMapTemplate, Converter={StaticResource BoolInvertConverter}}" >Yes, start with a custom map template</RadioButton>
+                <RadioButton GroupName="grp_maptemplate" Name="new_map_template_no" IsChecked="{Binding HasMapTemplate, Converter={StaticResource BoolInvertConverter}}" >No, start with an empty map</RadioButton>
+            </StackPanel>
+
+            <Label Grid.Row="8" Grid.Column="0" Content="Your technical expertise :" />
+            <StackPanel Grid.Row="8" Grid.Column="1">
+                <RadioButton GroupName="grp_mapuserexpertise" Name="new_map_user_conservative" 
+                             IsChecked="{Binding UserExperience, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:UserExperience.Rookie}}"
+                             >
+                    <RadioButton.Content>
+                        <TextBlock TextWrapping="Wrap" Text="Please offer me only editing functions that will continue to guarantee me a probably stable game." />
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton GroupName="grp_mapuserexpertise" Name="new_map_user_risktaker" 
+                             IsChecked="{Binding UserExperience, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:UserExperience.Experienced}}"
+                             >
+                    <RadioButton.Content>
+                        <TextBlock TextWrapping="Wrap" Text="I'm not afraid to try something in Anno 1800. If it works I'm very happy, otherwise I just change the map until it fits for me." />
+                    </RadioButton.Content>
+                 </RadioButton>
+                <RadioButton GroupName="grp_mapuserexpertise" Name="new_map_user_modder" 
+                             IsChecked="{Binding UserExperience, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static m:UserExperience.Modder}}"
+                             >
+                    <RadioButton.Content>
+                        <TextBlock TextWrapping="Wrap" Text="I am a modder and want to be provided with all the options without restriction, because I know what I want to customize manually myself." />
+                    </RadioButton.Content>
+                </RadioButton>
+                
+                <TextBlock TextWrapping="Wrap">
+                    As a reminder, any change made by the map editor can be undone. But there are no guarantees on our part for a 100% stable Anno experience. Even if Ubisoft have developed a great and very stable game, this manager is not the subject of Ubisoft nor is community support guaranteed. Everything at your risk.
+                </TextBlock>
+                
+            </StackPanel>
+
+            <Button Grid.Row="10" Grid.Column="1" Content="Create" HorizontalAlignment="Left" Command="{Binding Path=CreateSession}"/>
+
+        </Grid>
+        
+    </Grid>
+
+    
+
+</UserControl>

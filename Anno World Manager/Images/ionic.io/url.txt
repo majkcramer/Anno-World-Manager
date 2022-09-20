@@ -1,0 +1,4 @@
+https://ionic.io/ionicons
+
+Premium designed icons for use in web, iOS, Android, and desktop apps. Support for SVG and web font. Completely open source, MIT licensed and built by Ionic.
+

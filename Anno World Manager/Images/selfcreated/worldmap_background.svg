@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1920px"
+   height="1080px"
+   viewBox="0 0 1920 1080"
+   version="1.1"
+   id="SVGRoot"
+   sodipodi:docname="worldmap_background.svg"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview14"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="0.914906"
+     inkscape:cx="823.58187"
+     inkscape:cy="298.39131"
+     inkscape:window-width="3840"
+     inkscape:window-height="2080"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs9">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2075">
+      <stop
+         style="stop-color:#dba648;stop-opacity:1;"
+         offset="0"
+         id="stop2071" />
+      <stop
+         style="stop-color:#cc9b43;stop-opacity:0;"
+         offset="1"
+         id="stop2073" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2075"
+       id="linearGradient2077"
+       x1="-274.34512"
+       y1="319.15848"
+       x2="1640.6057"
+       y2="809.91925"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(281.24176,244.88772)" />
+  </defs>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#cc9b43;fill-opacity:1;stroke-width:3.84157"
+       id="rect1987"
+       width="1920"
+       height="1080"
+       x="0"
+       y="0"
+       ry="0" />
+    <rect
+       style="fill:url(#linearGradient2077);fill-opacity:1;stroke-width:3.84157"
+       id="rect1987-9"
+       width="1920"
+       height="1080"
+       x="0"
+       y="0"
+       ry="0" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#8f6b1f;stroke-width:3.86758;stroke-dasharray:30.9407, 3.86758;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect1987-95"
+       width="1876.412"
+       height="1033.1331"
+       x="20.908876"
+       y="21.74015"
+       ry="0" />
+  </g>
+</svg>

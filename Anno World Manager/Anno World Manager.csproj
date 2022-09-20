@@ -1,0 +1,118 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>Anno_World_Manager</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="3rdparty\ZoomAndPan.dll" />
+    <None Remove="Images\ionic.io\earth-outline.svg" />
+    <None Remove="Images\ionic.io\exit-outline.svg" />
+    <None Remove="Images\ionic.io\grid-outline.svg" />
+    <None Remove="Images\ionic.io\heart.svg" />
+    <None Remove="Images\ionic.io\help-circle-outline.svg" />
+    <None Remove="Images\ionic.io\hourglass-outline.svg" />
+    <None Remove="Images\ionic.io\logo-github.svg" />
+    <None Remove="Images\ionic.io\pulse-outline.svg" />
+    <None Remove="Images\ionic.io\settings-outline.svg" />
+    <None Remove="Images\menu-outline.svg" />
+    <None Remove="Images\selfcreated\worldmap_background.svg" />
+    <None Remove="ImExPort2\templates\a7tinfo.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="ImExPort2\templates\a7tinfo.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="3rdparty\" />
+    <Folder Include="tmp_dump\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommonServiceLocator" Version="2.0.6" />
+    <PackageReference Include="DotNetProjects.SVGImage" Version="4.1.108" />
+    <PackageReference Include="FluentResults" Version="3.11.0" />
+    <PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="6.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
+    <PackageReference Include="NLog" Version="5.0.4" />
+    <PackageReference Include="RichCanvas" Version="2.3.0" />
+    <PackageReference Include="SharpZipLib" Version="1.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AdvancedZoomAndPan\ZoomAndPan\ZoomAndPan.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FileDBReader">
+      <HintPath>3rdparty\FileDBReader.dll</HintPath>
+    </Reference>
+    <Reference Include="FileDBSerializer">
+      <HintPath>3rdparty\FileDBSerializer.dll</HintPath>
+    </Reference>
+    <Reference Include="RDAExplorer">
+      <HintPath>3rdparty\RDAExplorer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\ionic.io\earth-outline.svg" />
+    <Resource Include="Images\ionic.io\exit-outline.svg" />
+    <Resource Include="Images\ionic.io\grid-outline.svg" />
+    <Resource Include="Images\ionic.io\heart.svg" />
+    <Resource Include="Images\ionic.io\help-circle-outline.svg" />
+    <Resource Include="Images\ionic.io\hourglass-outline.svg" />
+    <Resource Include="Images\ionic.io\logo-github.svg" />
+    <Resource Include="Images\ionic.io\menu-outline.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\ionic.io\pulse-outline.svg" />
+    <Resource Include="Images\ionic.io\settings-outline.svg" />
+    <Resource Include="Images\selfcreated\worldmap_background.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="view\MapEdit.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="islands.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="maptemplates.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="view\MapEdit.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
+</Project>

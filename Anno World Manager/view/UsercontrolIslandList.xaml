@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Anno_World_Manager.view.UsercontrolIslandList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Anno_World_Manager.view"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Height="auto">
+        <Expander Height="auto" Header="Settings" Width="auto" Margin="0,0,0,10" IsExpanded="True">
+            <TabControl>
+                <TabItem Header="Islands">
+                    <StackPanel>
+                        <CheckBox>Display 'Old World'</CheckBox>
+                        <CheckBox>Display 'Cap Trelawney'</CheckBox>
+                        <CheckBox>Display 'Arctic'</CheckBox>
+                        <CheckBox>Display 'New World'</CheckBox>
+                        <CheckBox>Display 'Enbesa'</CheckBox>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="TabItem">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+            </TabControl>
+        </Expander>
+        <Expander Height="auto" Header="Islands" Width="auto" Margin="0,0,0,10" IsExpanded="True">
+            <ListView ItemsSource="{Binding Islands}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Expander>
+
+
+    </StackPanel>
+</UserControl>

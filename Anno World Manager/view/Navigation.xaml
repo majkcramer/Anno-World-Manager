@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="Anno_World_Manager.view.Navigation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Anno_World_Manager.view"
+             xmlns:svg1="clr-namespace:SVGImage.SVG;assembly=DotNetProjects.SVGImage"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="100">
+    <UserControl.Resources>
+        
+    </UserControl.Resources>
+    
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            Background="#FF321705">
+            
+            <svg1:SVGImage
+                Name="hamburgermenue_icon" 
+            RenderTransformOrigin="0.5,0.5" 
+            VerticalContentAlignment="Center" 
+            HorizontalContentAlignment="Center" 
+            Margin="3" 
+            OverrideColor="White"
+            />
+
+        </Grid>
+        
+
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FF321705"
+            >
+            <Label Content="Anno 1800" HorizontalAlignment="Left" Foreground="#FFDEDEDE" FontSize="11"/>
+            <Label Content="World Manager" HorizontalAlignment="Left" Foreground="White" FontSize="12"/>
+        </StackPanel>
+        
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="1"
+            Content="Status" HorizontalAlignment="Left" Foreground="#FFDEDEDE"
+            />
+
+        <Label
+            Grid.Row="2"
+            Grid.Column="1"
+            Content="Islands" HorizontalAlignment="Left" Foreground="#FFDEDEDE"
+            />
+
+        <Label
+            Grid.Row="3"
+            Grid.Column="1"
+            Content="Maps" HorizontalAlignment="Left" Foreground="#FFDEDEDE"
+            />
+
+        <Label
+            Grid.Row="4"
+            Grid.Column="1"
+            Content="World" HorizontalAlignment="Left" Foreground="#FFDEDEDE"
+            />
+
+        <Label
+            Grid.Row="6"
+            Grid.Column="1"
+            Content="Settings" HorizontalAlignment="Left" Foreground="#FFDEDEDE"
+            />
+
+        <Label
+            Grid.Row="7"
+            Grid.Column="1"
+            Content="Exit" HorizontalAlignment="Left" Foreground="#FFDEDEDE"
+            />
+
+    </Grid>
+</UserControl>
